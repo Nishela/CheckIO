@@ -7,14 +7,7 @@ def sum_light(els: List[datetime]) -> int:
 	"""
 		how long the light bulb has been turned on
 	"""
-	on = els[::2]
-	off = els[1::2]
-	res = sum([(itm - on[off.index(itm)]).total_seconds() for itm in off])
-	# result = sum([i.seconds + i.days * 24 * 3600 for i in res])
-	# for i in res:
-	# 	sec = i.seconds
-	# 	day = i.days * 24 * 3600
-	# 	result.append(sec + day)
+	res = sum([(els[itm + 1] - els[itm]).total_seconds() for itm in range(0, len(els), 2)])
 	return res
 
 

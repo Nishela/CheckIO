@@ -67,20 +67,10 @@ def sum_light(els: List[datetime], start_watching: Optional[datetime] = None) ->
     """
         how long the light bulb has been turned on
     """
-    if not start_watching:
-        on = els[::2]
-        off = els[1::2]
-        return sum([(itm - on[off.index(itm)]).total_seconds() for itm in off])
-    else:
-        if start_watching not in els:
-            els.append(start_watching)
-            els = sorted(els)
+    if start_watching:
+        els = sorted(els + [start_watching]) if start_watching not in els else els
         els = els[els.index(start_watching):]
-        on = els[::2]
-        off = els[1::2]
-        return sum([(itm - on[off.index(itm)]).total_seconds() for itm in off])
-
-
+    return sum([(els[itm + 1] - els[itm]).total_seconds() for itm in range(0, len(els), 2)]) if len(els) > 1 else 0
 
 if __name__ == '__main__':
     print("Example:")

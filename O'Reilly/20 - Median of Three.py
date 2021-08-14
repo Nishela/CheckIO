@@ -9,9 +9,10 @@ def median_three(els: Iterable[int]) -> Iterable[int]:
     # your code here
     lst = els[:2]
     for i in range(2, len(els)):
-        median = sorted(els[i - 2 : i + 1])[1]
+        median = sorted(els[i - 2: i + 1])[1]
         lst.append(median)
     return lst
+
 
 if __name__ == '__main__':
     print("Example:")
@@ -22,4 +23,3 @@ if __name__ == '__main__':
     assert list(median_three([5, 2, 9, 1, 7, 4, 6, 3, 8])) == [5, 2, 5, 2, 7, 4, 6, 4, 6]
     assert list(median_three([1])) == [1]
     print("Coding complete? Click 'Check' to earn cool rewards!")
-
